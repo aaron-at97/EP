@@ -2,8 +2,8 @@ package medicalconsultation;
 
 import data.*;
 import java.util.*;
-
 import medicalconsultation.exceptions.*;
+
 public class MedicalPrescription { // A class that represents medical prescription
     private int prescCode;
     private Date prescDate;

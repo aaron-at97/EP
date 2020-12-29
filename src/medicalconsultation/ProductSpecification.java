@@ -5,32 +5,21 @@ import java.math.BigDecimal;
 
 
 public class ProductSpecification {
+    private  ProductID productCode;
     private  String description;
-    private BigDecimal price;
 
-    private  ProductID UPCcode;
 
-    public ProductSpecification (ProductID productID){
-        this.UPCcode = productID;
-    }
-    public ProductSpecification(BigDecimal price, String descript, ProductID productID) {
-        this.price = price;
+    public ProductSpecification(String descript, ProductID productID) {
         this.description=descript;
-        this.UPCcode=productID;
+        this.productCode=productID;
     }
 
     public String getDescription() {
         return description;
     }
-    public BigDecimal getPrice() {
-        return price;
-    }
-    public void setDescription(String des){
-        this.description=des;
-    }
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 }
