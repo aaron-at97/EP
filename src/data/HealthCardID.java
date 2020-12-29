@@ -1,8 +1,8 @@
 package data;
 
 final public class HealthCardID {
-
     private final String personalID;
+
     public HealthCardID(String code) {
         this.personalID = code;
     }
