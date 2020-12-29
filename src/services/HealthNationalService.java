@@ -5,6 +5,7 @@ import data.HealthCardID;
 import java.net.ConnectException;
 import java.util.*;
 import services.exceptions.*;
+import data.exceptions.*;
 import medicalconsultation.exceptions.*;
  /**
 * External service for managingand storing ePrescriptions from population

@@ -1,10 +1,11 @@
 package medicalconsultation;
 import medicalconsultation.exceptions.*;
+import services.HealthNationalService;
 import services.exceptions.*;
 import java.net.ConnectException;
 import java.util.*;
 
-public class ConsultationTerminal { // ???
+public class ConsultationTerminal implements HealthNationalService { // ???
     public void initRevision() { /*. . .*/ } throws HealthCardException, NotValidePrescriptionException, ConnectException;
     public void initPrescriptionEdition() { /*. . .*/ } throws AnyCurrentPrescriptionException, NotFinishedTreatmentException;
     public void searchForProducts(String keyWord) { /*. . .*/ } throws AnyKeyWordMedicineException, ConnectException;
