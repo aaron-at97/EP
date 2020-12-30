@@ -15,45 +15,39 @@ public class MedicalPrescription { // A class that represents medical prescripti
     //??? // Its components, that is, the set of medical prescription lines
 
     private List<TakingGuideline> listTaking;
-    private List<MedicalPrescriptionLine> listPres;
+    List<MedicalPrescriptionLine> listPres;
     // objeto inicializar preinscripcion
     private MedicalPrescriptionLine mdl;
     // Objeto TakingGuideline
-    private TakingGuideline tg;
+    //private TakingGuideline tg;
 
 
     public MedicalPrescription (int prescCode, TakingGuideline tg) {
         this.prescCode=prescCode;
         this.prescDate= new Date();
-        this.tg = tg;
-        this.listTaking = new ArrayList<>();
-        this.listPres = new ArrayList<>();
+        this.mdl= null;
+        //this.tg = tg;
+        //this.listTaking = new ArrayList<>();
+        //this.listPres = new ArrayList<>();
     }
     public MedicalPrescription (int prescCode) {
         this.prescCode=prescCode;
+        this.listPres = new ArrayList<>();
     }
 
     // Makes some inicialization
     public void addLine(ProductID prodID, String[] instruc) throws  IncorrectTakingGuidelinesException {
 
-        listTaking.add(tg);
-
-        for (int i = 0; i < instruc.length; i++) {
-            instruc[i]= String.valueOf(listTaking.get(i));
-        }
-
         mdl = new MedicalPrescriptionLine(prodID,instruc);
-
+        listPres.add(mdl);
     }
 
     public void modifyLine(ProductID prodID, String[] instruc) throws ProductNotInPrescription, IncorrectTakingGuidelinesException {
-        mdl = new MedicalPrescriptionLine(prodID,instruc);
         listPres.add(mdl);
         boolean flag = false;
         for (int i = 0; i < listPres.size(); i++) {
-            System.out.println (listPres.get(i));
-            if (prodID.equals(listPres.get(i))) {
-                listPres.set(i, mdl);
+            if (prodID.equals(listPres.get(i).getProdID())) {
+                mdl.setInstruc(instruc);
                 flag=true;
             }
         }
@@ -62,10 +56,11 @@ public class MedicalPrescription { // A class that represents medical prescripti
         }
     }
     public void removeLine(ProductID prodID) throws ProductNotInPrescription {
+
+        listPres.add(mdl);
         boolean flag = false;
         for (int i = 0; i < listPres.size(); i++) {
-            System.out.println (listPres.get(i));
-            if (prodID.equals(listPres.get(i))) {
+            if (prodID.equals(listPres.get(i).getProdID())) {
                 listPres.remove(i);
                 flag=true;
             }
@@ -74,7 +69,5 @@ public class MedicalPrescription { // A class that represents medical prescripti
             throw new ProductNotInPrescription(" No existe el producto ");
         }
     }
-
-//??? the gettersandsetters
 
 }

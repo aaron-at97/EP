@@ -14,6 +14,8 @@ public class ConsultationTerminal implements HealthNationalService {
     private ScheduledVisitAgenda hcr;
     private HealthNationalService sns;
     private MedicalPrescription presc;
+    private List<ProductSpecification> listProduct = new ArrayList<>();
+    private ProductSpecification producEsp;
 
     public ConsultationTerminal(){
     }
@@ -22,18 +24,47 @@ public class ConsultationTerminal implements HealthNationalService {
         try {
             hc = hcr.getHealthCardID();
             presc = sns.getePrescription(hc);
-        }catch (ConnectException ce){
+        }
+        catch (ConnectException ce){
             throw new ConnectException();
         }
     }
 
-    public void initPrescriptionEdition() throws AnyCurrentPrescriptionException, NotFinishedTreatmentException { /*. . . */}
-    public void searchForProducts(String keyWord) throws AnyKeyWordMedicineException, ConnectException { /*. . .*/ }
-    public void selectProduct(int option) throws AnyMedicineSearchException, ConnectException { /*. . . */}
-    public void enterMedicineGuidelines(String[] instruc) throws AnySelectedMedicineException, IncorrectTakingGuidelinesException { /*. . .*/ }
-    public void enterTreatmentEndingDate(Date date throws IncorrectEndingDateException {/* . . . */}
-    public void sendePrescription() throws ConnectException, NotValidePrescription, eSignatureException, NotCompletedMedicalPrescription {/* . . . */}
-    public void printePresc() throws printingException {/* . . . */}
+    public void initPrescriptionEdition() throws AnyCurrentPrescriptionException, NotFinishedTreatmentException {
+
+    }
+    public void searchForProducts(String keyWord) throws AnyKeyWordMedicineException, ConnectException {
+        try {
+            listProduct = sns.getProductsByKW(keyWord);
+        }
+        catch (ConnectException ce){
+            throw new ConnectException();
+        }
+    }
+    public void selectProduct(int option) throws AnyMedicineSearchException, ConnectException {
+        try {
+            if (listProduct!=null) {
+                producEsp = sns.getProductSpecific(option);
+            } else {
+                throw new AnyMedicineSearchException("No se a realizado la busqueda previa");
+            }
+        }
+        catch (ConnectException ce){
+            throw new ConnectException();
+        }
+    }
+    public void enterMedicineGuidelines(String[] instruc) throws AnySelectedMedicineException, IncorrectTakingGuidelinesException {
+
+    }
+    public void enterTreatmentEndingDate(Date date throws IncorrectEndingDateException {
+
+    }
+    public void sendePrescription() throws ConnectException, NotValidePrescription, eSignatureException, NotCompletedMedicalPrescription {
+
+    }
+    public void printePresc() throws printingException {
+
+    }
 
     @Override
     public MedicalPrescription getePrescription(HealthCardID hcID) throws HealthCardException, NotValidePrescriptionException, ConnectException {

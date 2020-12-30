@@ -34,12 +34,4 @@ public class Posology{  // A class that represents the posology of amedicine
         this.freqUnit = freqUnit;
     }
 
-    @Override
-    public String toString() {
-        return "Posology{" +
-                "dose=" + dose +
-                ", freq=" + freq +
-                ", freqUnit=" + freqUnit +
-                '}';
-    }
 }

@@ -27,11 +27,4 @@ public class MedicalPrescriptionLine {
         this.instruc = instruc;
     }
 
-    @Override
-    public String toString() {
-        return "MedicalPrescriptionLine{" +
-                "prodID=" + prodID +
-                ", instruc=" + Arrays.toString(instruc) +
-                '}';
-    }
 }

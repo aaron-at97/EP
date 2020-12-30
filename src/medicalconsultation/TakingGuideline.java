@@ -45,15 +45,4 @@ public class TakingGuideline  {  // Represents the taking guidelines of a medici
     public void setPosology(Posology posology) {
         this.posology = posology;
     }
-
-    @Override
-    public String toString() {
-        return "TakingGuideline{" +
-                "dayMoment=" + dayMoment +
-                ", duration=" + duration +
-                ", instructions='" + instructions + '\'' +
-                ", posology=" + posology +
-                '}';
-    }
-    // ???   // the gettersandsetters
 }
