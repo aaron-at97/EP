@@ -23,8 +23,23 @@ public class MedicalPrescription { // A class that represents medical prescripti
         mdl = new MedicalPrescriptionLine(prodID,instruc);
         listPres.add(mdl);
     }
-    public void modifyLine(ProductID prodID,String[] instruc) throws ProductNotInPrescription, IncorrectTakingGuidelinesException {/* . . . */}
-    public void removeLine(ProductID prodID) throws ProductNotInPrescription {/* . . . */}
+    public void modifyLine(ProductID prodID,String[] instruc) throws ProductNotInPrescription, IncorrectTakingGuidelinesException {
+        mdl = new MedicalPrescriptionLine(prodID,instruc);
+        listPres.add(mdl);
+    }
+    public void removeLine(ProductID prodID) throws ProductNotInPrescription {
+        boolean flag = false;
+        for (int i = 0; i < listPres.size(); i++) {
+            System.out.println (listPres.get(i));
+            if (prodID.equals(listPres.get(i))) {
+                listPres.remove(i);
+                flag=true;
+            }
+        }
+        if (flag==false) {
+            throw new ProductNotInPrescription(" No existe el producto ");
+        }
+    }
 
     //??? the gettersandsetters
 
