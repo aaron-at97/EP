@@ -1,4 +1,4 @@
-package services.exceptions;
+package medicalconsultation.exceptions;
 
 public class NotValidePrescriptionException extends Exception {
     public NotValidePrescriptionException(String msg){

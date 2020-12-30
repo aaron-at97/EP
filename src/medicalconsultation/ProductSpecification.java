@@ -1,8 +1,6 @@
 package medicalconsultation;
 
 import data.ProductID;
-import java.math.BigDecimal;
-
 
 public class ProductSpecification {
     private  ProductID productCode;
