@@ -1,5 +1,8 @@
 package medicalconsultation;
 import data.*;
+
+import java.util.Arrays;
+
 public class MedicalPrescriptionLine {
     ProductID prodID;
     String[] instruc;
@@ -22,5 +25,13 @@ public class MedicalPrescriptionLine {
 
     public void setInstruc(String[] instruc) {
         this.instruc = instruc;
+    }
+
+    @Override
+    public String toString() {
+        return "MedicalPrescriptionLine{" +
+                "prodID=" + prodID +
+                ", instruc=" + Arrays.toString(instruc) +
+                '}';
     }
 }

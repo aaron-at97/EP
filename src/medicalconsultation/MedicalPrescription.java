@@ -1,8 +1,9 @@
 package medicalconsultation;
 
 import data.*;
-import java.util.*;
+
 import medicalconsultation.exceptions.*;
+import java.util.*;
 
 public class MedicalPrescription { // A class that represents medical prescription
     private int prescCode;
@@ -10,23 +11,41 @@ public class MedicalPrescription { // A class that represents medical prescripti
     private Date endDate;
     private HealthCardID hcID; // the healthcard ID of the patient
     private DigitalSignature eSign; // the eSignature of the doctor
-    //??? // Its components, that is, the set of medical prescription lines
-    private boolean isClosed; // flag to know if IncorrectTakingGuidelinesException
-    private List<MedicalPrescriptionLine> listPres;
-    private MedicalPrescriptionLine mdl;
 
-    public MedicalPrescription (int prescCode) {
+    //??? // Its components, that is, the set of medical prescription lines
+
+    private List<TakingGuideline> listTaking;
+    private List<MedicalPrescriptionLine> listPres;
+    // objeto inicializar preinscripcion
+    private MedicalPrescriptionLine mdl;
+    // Objeto TakingGuideline
+    private TakingGuideline tg;
+
+
+    public MedicalPrescription (int prescCode, TakingGuideline tg) {
         this.prescCode=prescCode;
         this.prescDate= new Date();
-
-    } // Makes some inicialization
-    public void addLine(ProductID prodID, String[] instruc) throws  IncorrectTakingGuidelinesException {
-        if(isClosed){
-            throw new IncorrectTakingGuidelinesException("The sale is closed");
-        }
-        mdl = new MedicalPrescriptionLine(prodID,instruc);
-        listPres.add(mdl);
+        this.tg = tg;
+        this.listTaking = new ArrayList<>();
+        this.listPres = new ArrayList<>();
     }
+    public MedicalPrescription (int prescCode) {
+        this.prescCode=prescCode;
+    }
+
+    // Makes some inicialization
+    public void addLine(ProductID prodID, String[] instruc) throws  IncorrectTakingGuidelinesException {
+
+        listTaking.add(tg);
+
+        for (int i = 0; i < instruc.length; i++) {
+            instruc[i]= String.valueOf(listTaking.get(i));
+        }
+
+        mdl = new MedicalPrescriptionLine(prodID,instruc);
+
+    }
+
     public void modifyLine(ProductID prodID, String[] instruc) throws ProductNotInPrescription, IncorrectTakingGuidelinesException {
         mdl = new MedicalPrescriptionLine(prodID,instruc);
         listPres.add(mdl);
@@ -56,6 +75,6 @@ public class MedicalPrescription { // A class that represents medical prescripti
         }
     }
 
-    //??? the gettersandsetters
+//??? the gettersandsetters
 
 }
