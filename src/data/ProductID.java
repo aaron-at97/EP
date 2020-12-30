@@ -1,4 +1,5 @@
 package data;
+import static java.lang.Character.*;
 
 final public class ProductID {
     private final String productCode;
@@ -7,8 +8,31 @@ final public class ProductID {
         this.productCode = code;
     }
 
-    public String getProductID() {
+    public String getProductID() throws Exception{
+        if(!CompProductCode())
+            throw new Exception("The code is not valid. \n");
         return productCode;
+    }
+
+    public Boolean CompProductCode(){
+
+        if (productCode == null)
+            return false;
+
+        char [] codeArray = productCode.toCharArray();
+        if (productCode.length() == 12) {
+
+            for (int i = 0; i < 12; i++) {
+                if (!isDigit(codeArray[i])) {
+                    return false;
+                }
+            }
+        }
+        else {
+            return false;
+        }
+
+        return true;
     }
 
     @Override

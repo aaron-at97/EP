@@ -15,7 +15,11 @@ public class MedicalPrescription { // A class that represents medical prescripti
     private List<MedicalPrescriptionLine> listPres;
     private MedicalPrescriptionLine mdl;
 
-    public MedicalPrescription () { /*. . .*/ } // Makes some inicialization
+    public MedicalPrescription (int prescCode) {
+        this.prescCode=prescCode;
+        this.prescDate= new Date();
+
+    } // Makes some inicialization
     public void addLine(ProductID prodID, String[] instruc) throws  IncorrectTakingGuidelinesException {
         if(isClosed){
             throw new IncorrectTakingGuidelinesException("The sale is closed");
@@ -23,9 +27,20 @@ public class MedicalPrescription { // A class that represents medical prescripti
         mdl = new MedicalPrescriptionLine(prodID,instruc);
         listPres.add(mdl);
     }
-    public void modifyLine(ProductID prodID,String[] instruc) throws ProductNotInPrescription, IncorrectTakingGuidelinesException {
+    public void modifyLine(ProductID prodID, String[] instruc) throws ProductNotInPrescription, IncorrectTakingGuidelinesException {
         mdl = new MedicalPrescriptionLine(prodID,instruc);
         listPres.add(mdl);
+        boolean flag = false;
+        for (int i = 0; i < listPres.size(); i++) {
+            System.out.println (listPres.get(i));
+            if (prodID.equals(listPres.get(i))) {
+                listPres.set(i, mdl);
+                flag=true;
+            }
+        }
+        if (flag==false) {
+            throw new ProductNotInPrescription(" No existe el producto ");
+        }
     }
     public void removeLine(ProductID prodID) throws ProductNotInPrescription {
         boolean flag = false;
