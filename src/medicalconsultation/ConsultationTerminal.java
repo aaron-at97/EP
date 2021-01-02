@@ -18,14 +18,18 @@ public class ConsultationTerminal implements HealthNationalService {
     private ProductSpecification producEsp;
 
     public ConsultationTerminal(){
+
     }
 
     public void initRevision() throws HealthCardException, NotValidePrescriptionException, ConnectException {
         try {
             hc = hcr.getHealthCardID();
+            if(hc == null){
+                throw new HealthCardException("El paciente no tiene visita o no se encuentra registrado en la agenda de visitas concertadas");
+            }
             presc = sns.getePrescription(hc);
         }
-        catch (ConnectException ce){
+        catch (ConnectException | NotValidePrescriptionException ce){
             throw new ConnectException();
         }
     }
@@ -43,10 +47,10 @@ public class ConsultationTerminal implements HealthNationalService {
     }
     public void selectProduct(int option) throws AnyMedicineSearchException, ConnectException {
         try {
-            if (listProduct!=null) {
+            if (listProduct!= null) {
                 producEsp = sns.getProductSpecific(option);
             } else {
-                throw new AnyMedicineSearchException("No se a realizado la busqueda previa");
+                throw new AnyMedicineSearchException("No se a realizado una busqueda previa");
             }
         }
         catch (ConnectException ce){
@@ -56,11 +60,18 @@ public class ConsultationTerminal implements HealthNationalService {
     public void enterMedicineGuidelines(String[] instruc) throws AnySelectedMedicineException, IncorrectTakingGuidelinesException {
 
     }
-    public void enterTreatmentEndingDate(Date date throws IncorrectEndingDateException {
+    public void enterTreatmentEndingDate(Date date throws IncorrectEndingDateException{
 
     }
-    public void sendePrescription() throws ConnectException, NotValidePrescription, eSignatureException, NotCompletedMedicalPrescription {
-
+    public void sendePrescription() throws ConnectException, eSignatureException, NotCompletedMedicalPrescription, HealthCardException, NotValidePrescriptionException {
+        try {
+            if (sns.getePrescription(hc) == null) {
+                throw new NotValidePrescriptionException("La prescripcion no es valida");
+            }
+        }
+        catch (ConnectException ce){
+            throw new ConnectException();
+        }
     }
     public void printePresc() throws printingException {
 
