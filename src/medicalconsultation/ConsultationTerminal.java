@@ -60,7 +60,7 @@ public class ConsultationTerminal implements HealthNationalService {
     public void enterMedicineGuidelines(String[] instruc) throws AnySelectedMedicineException, IncorrectTakingGuidelinesException {
 
     }
-    public void enterTreatmentEndingDate(Date date throws IncorrectEndingDateException{
+    public void enterTreatmentEndingDate(Date date) throws IncorrectEndingDateException{
 
     }
     public void sendePrescription() throws ConnectException, eSignatureException, NotCompletedMedicalPrescription, HealthCardException, NotValidePrescriptionException {
