@@ -14,6 +14,10 @@ public class ProductSpecification {
         this.price=price;
     }
 
+    public ProductID getProductCode() {
+        return productCode;
+    }
+
     public String getDescription() {
         return description;
     }

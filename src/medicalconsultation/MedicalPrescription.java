@@ -22,13 +22,14 @@ public class MedicalPrescription { // A class that represents medical prescripti
     //private TakingGuideline tg;
 
 
-    public MedicalPrescription (int prescCode, TakingGuideline tg) {
+
+
+    public MedicalPrescription (int prescCode, Date prescDate, Date endDate, HealthCardID hcID, DigitalSignature eSign) {
         this.prescCode=prescCode;
-        this.prescDate= new Date();
-        this.mdl= null;
-        //this.tg = tg;
-        //this.listTaking = new ArrayList<>();
-        //this.listPres = new ArrayList<>();
+        this.prescDate=prescDate;
+        this.endDate=endDate;
+        this.hcID=hcID;
+        this.eSign=eSign;
     }
     public MedicalPrescription (int prescCode) {
         this.prescCode=prescCode;
@@ -51,7 +52,7 @@ public class MedicalPrescription { // A class that represents medical prescripti
                 flag=true;
             }
         }
-        if (flag==false) {
+        if (!flag) {
             throw new ProductNotInPrescription(" No existe el producto ");
         }
     }
@@ -65,9 +66,38 @@ public class MedicalPrescription { // A class that represents medical prescripti
                 flag=true;
             }
         }
-        if (flag==false) {
+        if (!flag) {
             throw new ProductNotInPrescription(" No existe el producto ");
         }
     }
 
+    public DigitalSignature geteSign() {
+        return eSign;
+    }
+
+    public void seteSign(DigitalSignature eSign) {
+        this.eSign = eSign;
+    }
+
+    public List<MedicalPrescriptionLine> getListPres() {
+        return listPres;
+    }
+    public void setListPres(List<MedicalPrescriptionLine> listPres) {
+        this.listPres = listPres;
+    }
+    public Date getPrescDate() {
+        return prescDate;
+    }
+
+    public void setPrescDate(Date prescDate) {
+        this.prescDate = prescDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
 }
