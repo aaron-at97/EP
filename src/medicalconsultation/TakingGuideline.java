@@ -2,23 +2,23 @@ package medicalconsultation;
 
 public class TakingGuideline  {  // Represents the taking guidelines of a medicine
 
-     private float dayMoment;
-     private float duration;
-     private String instructions;
-     private Posology posology;
+    private dayMoment dayMoment;
+    private float duration;
+    private String instructions;
+    private Posology posology;
 
-    public TakingGuideline(float dM, float du, String i, float d, float f, FqUnit u) {
+    public TakingGuideline(dayMoment dM, float du, String i, float d, float f, FqUnit u) {
         this.dayMoment=dM;
         this.duration=du;
         this.instructions=i;
         this.posology = new Posology(d, f, u);
     }
 
-    public float getDayMoment() {
+    public dayMoment getDayMoment() {
         return dayMoment;
     }
 
-    public void setDayMoment(float dayMoment) {
+    public void setDayMoment(dayMoment dayMoment) {
         this.dayMoment = dayMoment;
     }
 

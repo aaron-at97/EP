@@ -12,8 +12,8 @@ public class HealthCardIDTest {
         HealthCardID correct = new HealthCardID("ARTO1234567891");
         HealthCardID incorrect1 = new HealthCardID("ARTO12345678910"); // mas de 10 digitos
         HealthCardID incorrect2 = new HealthCardID("AAA1234567890"); // menos caracteres
+        HealthCardID incorrect4 = new HealthCardID("ARTOO1234567891"); //mas caracteres
         HealthCardID incorrect3 = new HealthCardID("1234567890AAAA"); //diferente orden
-        HealthCardID incorrect4 = new HealthCardID("ARTOO1234567891"); //diferente orden
         HealthCardID incorrect5 = new HealthCardID("");
 
         Assertions.assertEquals(correct.getPersonalID(), "ARTO1234567891");
@@ -25,7 +25,4 @@ public class HealthCardIDTest {
         Assertions.assertFalse(incorrect5.CodeCardID());
 
     }
-
-
-
 }
