@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class addLine {
+public class MedicalPrescriptionTest {
     @Test
     public void addLine() throws IncorrectTakingGuidelinesException {
 
         ProductID productID = new ProductID("5");
-        TakingGuideline tg = new TakingGuideline(545, 656, "sadjsakdkjasbdkjbkasbkabskhdbkasjdvsjahd", 55, 6, FqUnit.HOUR);
+        TakingGuideline tg = new TakingGuideline(dayMoment.AFTERBREAKFAST, 656, "sadjsakdkjasbdkjbkasbkabskhdbkasjdvsjahd", 55, 6, FqUnit.HOUR);
 
         MedicalPrescription ob = new MedicalPrescription(1);
 
         ob.addLine(productID, instrucGet(tg));
-       // System.out.println(ob.toString());
+        // System.out.println(ob.toString());
 
     }
     @Test
@@ -30,13 +30,13 @@ public class addLine {
 
         ProductID productID = new ProductID("5");
 
-        TakingGuideline tg = new TakingGuideline(545, 656, "sadjsakdkjasbdkjbkasbkabskhdbkasjdvsjahd", 55, 6, FqUnit.HOUR);
+        TakingGuideline tg = new TakingGuideline(dayMoment.BEFOEMEALS, 656, "sadjsakdkjasbdkjbkasbkabskhdbkasjdvsjahd", 55, 6, FqUnit.HOUR);
         MedicalPrescription modify = new MedicalPrescription(1);
         modify.addLine(productID, instrucGet(tg));
 
-        TakingGuideline tg2 = new TakingGuideline(5, 6, "vsjahd", 5, 2, FqUnit.DAY);
+        TakingGuideline tg2 = new TakingGuideline(dayMoment.DURINGDINNER, 6, "vsjahd", 5, 2, FqUnit.DAY);
         modify.modifyLine(productID, instrucGet(tg2));
-      //  System.out.println(modify.toString());
+        //  System.out.println(modify.toString());
 
     }
 
@@ -49,11 +49,11 @@ public class addLine {
         ProductID productID3 = new ProductID("5");
         ProductID productID4 = new ProductID("9");
 
-        TakingGuideline tg = new TakingGuideline(1, 46, "vsjahd", 45, 2, FqUnit.DAY);
-        TakingGuideline tg1 = new TakingGuideline(2, 26, "4565sjahd", 15, 1, FqUnit.DAY);
-        TakingGuideline tg2 = new TakingGuideline(3, 66, "avdjashvdxsdafsdv", 65, 2, FqUnit.WEEK);
-        TakingGuideline tg3 = new TakingGuideline(4, 96, "aafsdffd", 525, 2, FqUnit.MONTH);
-        TakingGuideline tg4 = new TakingGuideline(5, 56, "vsjahd", 25, 2, FqUnit.HOUR);
+        TakingGuideline tg = new TakingGuideline(dayMoment.BEFOREDINNER, 46, "vsjahd", 45, 2, FqUnit.DAY);
+        TakingGuideline tg1 = new TakingGuideline(dayMoment.AFTERBREAKFAST, 26, "4565sjahd", 15, 1, FqUnit.DAY);
+        TakingGuideline tg2 = new TakingGuideline(dayMoment.AFTERDINNER, 66, "avdjashvdxsdafsdv", 65, 2, FqUnit.WEEK);
+        TakingGuideline tg3 = new TakingGuideline(dayMoment.BEFOREBREAKFAST, 96, "aafsdffd", 525, 2, FqUnit.MONTH);
+        TakingGuideline tg4 = new TakingGuideline(dayMoment.DURINGLUNCH, 56, "vsjahd", 25, 2, FqUnit.HOUR);
 
         MedicalPrescription modify = new MedicalPrescription(1);
         modify.addLine(productID, instrucGet(tg));
@@ -62,7 +62,6 @@ public class addLine {
         modify.addLine(productID3, instrucGet(tg3));
         modify.addLine(productID4, instrucGet(tg4));
         modify.removeLine(productID2);
-        System.out.println(modify.toString());
 
     }
 
