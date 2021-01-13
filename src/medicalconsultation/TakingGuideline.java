@@ -27,6 +27,7 @@ public class TakingGuideline  {  // Represents the taking guidelines of a medici
                 Objects.equals(posology, that.posology);
     }
 
+
     public dayMoment getDayMoment() {
         return dayMoment;
     }
