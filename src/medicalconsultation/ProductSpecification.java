@@ -2,6 +2,8 @@ package medicalconsultation;
 
 import data.ProductID;
 
+import java.util.Objects;
+
 public class ProductSpecification {
     private  ProductID productCode;
     private  String description;
@@ -16,6 +18,16 @@ public class ProductSpecification {
 
     public ProductID getProductCode() {
         return productCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductSpecification that = (ProductSpecification) o;
+        return Float.compare(that.price, price) == 0 &&
+                Objects.equals(productCode, that.productCode) &&
+                Objects.equals(description, that.description);
     }
 
     public String getDescription() {

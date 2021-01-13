@@ -1,5 +1,7 @@
 package medicalconsultation;
 
+import java.util.Objects;
+
 public class TakingGuideline  {  // Represents the taking guidelines of a medicine
 
     private dayMoment dayMoment;
@@ -12,6 +14,17 @@ public class TakingGuideline  {  // Represents the taking guidelines of a medici
         this.duration=du;
         this.instructions=i;
         this.posology = new Posology(d, f, u);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TakingGuideline that = (TakingGuideline) o;
+        return Float.compare(that.duration, duration) == 0 &&
+                dayMoment == that.dayMoment &&
+                Objects.equals(instructions, that.instructions) &&
+                Objects.equals(posology, that.posology);
     }
 
     public dayMoment getDayMoment() {
@@ -44,5 +57,15 @@ public class TakingGuideline  {  // Represents the taking guidelines of a medici
 
     public void setPosology(Posology posology) {
         this.posology = posology;
+    }
+
+    @Override
+    public String toString() {
+        return "TakingGuideline{" +
+                "dayMoment=" + dayMoment +
+                ", duration=" + duration +
+                ", instructions='" + instructions + '\'' +
+                ", posology=" + posology +
+                '}';
     }
 }
