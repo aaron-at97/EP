@@ -1,8 +1,5 @@
-package medicalConsultation;
+package medicalconsultation;
 
-import medicalconsultation.FqUnit;
-import medicalconsultation.TakingGuideline;
-import medicalconsultation.dayMoment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

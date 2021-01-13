@@ -1,4 +1,4 @@
-package medicalConsultation;
+package medicalconsultation;
 
 public class PosologyTest {
 

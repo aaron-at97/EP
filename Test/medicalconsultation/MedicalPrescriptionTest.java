@@ -1,11 +1,10 @@
-package medicalConsultation;
+package medicalconsultation;
 
 
 
 import data.DigitalSignature;
 import data.HealthCardID;
 import data.ProductID;
-import medicalconsultation.*;
 import medicalconsultation.exceptions.IncorrectTakingGuidelinesException;
 import medicalconsultation.exceptions.ProductNotInPrescription;
 import org.junit.jupiter.api.BeforeAll;
