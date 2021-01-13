@@ -39,6 +39,5 @@ private TakingGuideline tg1;
         assertNotEquals(tg1, notEqual2);
 
     }
-
-
+    
 }
