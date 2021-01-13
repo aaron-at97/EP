@@ -15,8 +15,10 @@ public class TakingGuideline  {  // Represents the taking guidelines of a medici
         this.instructions=i;
         this.posology = new Posology(d, f, u);
     }
+
     public TakingGuideline() {
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

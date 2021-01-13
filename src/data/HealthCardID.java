@@ -14,6 +14,7 @@ final public class HealthCardID {
         }
         return personalID;
     }
+
     public Boolean CodeCardID(){
 
         if (personalID == null)

@@ -100,6 +100,7 @@ public class MedicalPrescription { // A class that represents medical prescripti
     }
 
     public void removeLine(ProductID prodID) throws ProductNotInPrescription {
+
        mdl = getMedicalPrescriptionLine(prodID);
        listPres.remove(mdl);
 

@@ -18,6 +18,7 @@ public class DigitalSignature {
             return false;
         DigitalSignature signature = (DigitalSignature) o;
         return firma.equals(signature.firma);
+
     }
 
     @Override

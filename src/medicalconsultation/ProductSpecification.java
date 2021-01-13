@@ -9,7 +9,6 @@ public class ProductSpecification {
     private  String description;
     private float price;
 
-
     public ProductSpecification(String descript, ProductID productID, float price) {
         this.description=descript;
         this.productCode=productID;

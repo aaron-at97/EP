@@ -140,7 +140,7 @@ public class MedicalPrescriptionTest {
         TakingGuideline tg3 = new TakingGuideline(dayMoment.BEFOREBREAKFAST, 96, "aafsdffd", 525, 2, FqUnit.MONTH);
         TakingGuideline tg4 = new TakingGuideline(dayMoment.DURINGLUNCH, 56, "vsjahd", 25, 2, FqUnit.HOUR);
 
-        MedicalPrescription modify = new MedicalPrescription(1);
+
         modify.addLine(productID, instrucGet(tg));
         modify.addLine(productID1, instrucGet(tg1));
         modify.addLine(productID2, instrucGet(tg2));

@@ -46,6 +46,7 @@ public class ConsultationTerminal {
         if(presc == null) {
             throw new AnyCurrentPrescriptionException("El paciente no tiene prescripcion");
         }
+
         if (presc.getEndDate().after(today)) {
             throw new NotFinishedTreatmentException("Tratamiento no finalizado");
         }

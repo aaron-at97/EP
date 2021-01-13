@@ -22,6 +22,7 @@ public enum FqUnit {
                 event=null;
                 break;
         }
+
         return event;
     }
 

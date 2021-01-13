@@ -9,6 +9,7 @@ import java.util.Objects;
 public class MedicalPrescriptionLine {
     ProductID prodID;
     TakingGuideline instruc;
+
     public MedicalPrescriptionLine (ProductID prodID, TakingGuideline instruc) {
         this.prodID=prodID;
         this.instruc=instruc;
