@@ -1,7 +1,6 @@
 package medicalconsultation;
 
 import data.*;
-
 import medicalconsultation.exceptions.*;
 import java.util.*;
 
