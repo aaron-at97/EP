@@ -159,11 +159,10 @@ public class MedicalPrescriptionTest {
         mp.removeLine(new ProductID("182736484763"));
         assertEquals(expectedEmptyLines,mp);
         String[] instruct = new String[] {"AFTERBREAKFAST","7","abc","5","4","DAY"};
-
-       /* mp.addLine(new ProductID("123456879110"),instruct);
-        mp.removeLine(new ProductID("123456879110"));
-        mp.getMedicalPrescriptionLine(new ProductID("654616515"));*/
-        assertThrows(ProductNotInPrescription.class, () -> {mp.getMedicalPrescriptionLine(new ProductID("123456879110"));});
+        mp.addLine(new ProductID("654616515"),instruct);
+        mp.removeLine(new ProductID("654616515"));
+        
+        assertThrows(ProductNotInPrescription.class, () -> {mp.getMedicalPrescriptionLine(new ProductID("654616515"));});
 
     }
 
