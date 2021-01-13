@@ -70,12 +70,6 @@ public class MedicalPrescription { // A class that represents medical prescripti
         try {
             TakingGuideline tg = new TakingGuideline(dayMoment.getdayMoment(instruc[0]), Float.parseFloat(instruc[1]),
                     instruc[2], Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.getFqUnit(instruc[5]));
-            /*System.out.println(instruc[0]);
-            System.out.println(instruc[1]);
-            System.out.println(instruc[2]);
-            System.out.println(instruc[3]);
-            System.out.println(instruc[4]);
-            System.out.println(instruc[5]);*/
 
             mdl = new MedicalPrescriptionLine(prodID, tg);
             listPres.add(new MedicalPrescriptionLine(prodID, tg));

@@ -15,7 +15,8 @@ public class TakingGuideline  {  // Represents the taking guidelines of a medici
         this.instructions=i;
         this.posology = new Posology(d, f, u);
     }
-
+    public TakingGuideline() {
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -25,39 +26,6 @@ public class TakingGuideline  {  // Represents the taking guidelines of a medici
                 dayMoment == that.dayMoment &&
                 Objects.equals(instructions, that.instructions) &&
                 Objects.equals(posology, that.posology);
-    }
-
-
-    public dayMoment getDayMoment() {
-        return dayMoment;
-    }
-
-    public void setDayMoment(dayMoment dayMoment) {
-        this.dayMoment = dayMoment;
-    }
-
-    public float getDuration() {
-        return duration;
-    }
-
-    public void setDuration(float duration) {
-        this.duration = duration;
-    }
-
-    public String getInstructions() {
-        return instructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
-    }
-
-    public Posology getPosology() {
-        return posology;
-    }
-
-    public void setPosology(Posology posology) {
-        this.posology = posology;
     }
 
     @Override
