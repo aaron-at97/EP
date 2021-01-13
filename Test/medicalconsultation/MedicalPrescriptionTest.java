@@ -1,7 +1,5 @@
 package medicalconsultation;
 
-
-
 import data.DigitalSignature;
 import data.HealthCardID;
 import data.ProductID;
@@ -17,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class MedicalPrescriptionTest {
-
 
     MedicalPrescription mp;
     MedicalPrescription equal;

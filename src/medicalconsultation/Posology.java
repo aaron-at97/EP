@@ -12,6 +12,8 @@ public class Posology{  // A class that represents the posology of amedicine
         this.freq=f;
         this.freqUnit=u;
     }
+    public Posology() {
+    }
 
     @Override
     public boolean equals(Object o) {
