@@ -2,25 +2,24 @@ package medicalconsultation;
 
 import data.*;
 import medicalconsultation.exceptions.*;
+
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MedicalPrescription { // A class that represents medical prescription
     private int prescCode;
-    private Date prescDate;
+    private String prescDate;
     private Date endDate;
+    private SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
     private HealthCardID hcID; // the healthcard ID of the patient
     private DigitalSignature eSign; // the eSignature of the doctor
 
-    //??? // Its components, that is, the set of medical prescription lines
-
-    private List<TakingGuideline> listTaking;
     List<MedicalPrescriptionLine> listPres;
     // objeto inicializar preinscripcion
     private MedicalPrescriptionLine mdl;
-    // Objeto TakingGuideline
-    private TakingGuideline tg;
 
-    public MedicalPrescription (int prescCode, Date prescDate, Date endDate, HealthCardID hcID, DigitalSignature eSign, List<MedicalPrescriptionLine> listPres) {
+
+    public MedicalPrescription (int prescCode, String prescDate, Date endDate, HealthCardID hcID, DigitalSignature eSign, List<MedicalPrescriptionLine> listPres) {
         this.prescCode=prescCode;
         this.prescDate=prescDate;
         this.endDate=endDate;
@@ -30,7 +29,7 @@ public class MedicalPrescription { // A class that represents medical prescripti
     }
     // For testing purpose
 
-    public MedicalPrescription (int prescCode, Date prescDate, Date endDate, HealthCardID hcID, DigitalSignature eSign) {
+    public MedicalPrescription (int prescCode, String prescDate, Date endDate, HealthCardID hcID, DigitalSignature eSign) {
         this.prescCode = prescCode;
         this.prescDate = prescDate;
         this.endDate = endDate;
@@ -49,10 +48,6 @@ public class MedicalPrescription { // A class that represents medical prescripti
 
     public MedicalPrescription (int prescCode) {
         this.prescCode=prescCode;
-        this.prescDate=null;
-        this.endDate=null;
-        this.hcID=null;
-        this.eSign=null;
         this.listPres = new ArrayList<>();
     }
 
@@ -134,11 +129,11 @@ public class MedicalPrescription { // A class that represents medical prescripti
     public void setListPres(ArrayList<MedicalPrescriptionLine> listPres) {
         this.listPres = listPres;
     }
-    public Date getPrescDate() {
+    public String getPrescDate() {
         return prescDate;
     }
 
-    public void setPrescDate(Date prescDate) {
+    public void setPrescDate(String prescDate) {
         this.prescDate = prescDate;
     }
 
@@ -150,24 +145,37 @@ public class MedicalPrescription { // A class that represents medical prescripti
         this.endDate = endDate;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MedicalPrescription that = (MedicalPrescription) o;
         return prescCode == that.prescCode &&
-                Objects.equals(prescDate, that.prescDate) &&
                 Objects.equals(endDate, that.endDate) &&
+                Objects.equals(prescDate, that.prescDate) &&
                 Objects.equals(hcID, that.hcID) &&
                 Objects.equals(eSign, that.eSign) &&
                 Objects.equals(listPres, that.listPres);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(prescCode, prescDate, endDate, sdformat, hcID, eSign, listPres, mdl);
     }
 
     @Override
     public String toString() {
         return "MedicalPrescription{" +
+                "prescCode=" + prescCode +
+                ", prescDate='" + prescDate + '\'' +
+                ", endDate=" + endDate +
+                ", sdformat=" + sdformat +
+                ", hcID=" + hcID +
+                ", eSign=" + eSign +
                 ", listPres=" + listPres +
-                "\n mdl= "+ mdl +
+                ", mdl=" + mdl +
                 '}';
     }
 }

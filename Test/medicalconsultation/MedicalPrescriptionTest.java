@@ -38,7 +38,7 @@ public class MedicalPrescriptionTest {
 
     @BeforeAll
     static void starting(){
-        hcID = new HealthCardID("BBBBBBBBKQ728364923473928463");
+        hcID = new HealthCardID("ARTO1234567891");
         tg = new TakingGuideline(dayMoment.AFTERMEALS, 7, "abc", 5, 4, FqUnit.HOUR);
         mpl = new MedicalPrescriptionLine(new ProductID("234736484763"), tg);
         tg2 = new TakingGuideline(dayMoment.AFTERBREAKFAST, 7, "abc", 5, 4, FqUnit.DAY);
@@ -47,12 +47,6 @@ public class MedicalPrescriptionTest {
         mpd = new MedicalPrescriptionLine(new ProductID("772734584763"), tg3);
     }
 
-    @Test
-    void getMedicalPrescriptionLine() throws Exception{
-        assertEquals(mpl, mp.getMedicalPrescriptionLine(new ProductID("234736484763")));
-        assertNotEquals(mpl2, mp.getMedicalPrescriptionLine(new ProductID("234736484763")));
-        assertThrows(ProductNotInPrescription.class, () -> {mp.getMedicalPrescriptionLine(new ProductID("999736484763"));});
-    }
 
     @Test
     public void addLine() throws Exception {
