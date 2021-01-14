@@ -37,18 +37,12 @@ public class MedicalPrescriptionTest {
     }
 
     @BeforeAll
-    static void starting() throws Exception {
+    static void starting(){
         hcID = new HealthCardID("BBBBBBBBKQ728364923473928463");
-      //  sign = new DigitalSignature("AB".getBytes());
-
         tg = new TakingGuideline(dayMoment.AFTERMEALS, 7, "abc", 5, 4, FqUnit.HOUR);
         mpl = new MedicalPrescriptionLine(new ProductID("234736484763"), tg);
-        //mp2 = new MedicalPrescriptionLine(new ProductID("234736484763"), tg);
-
         tg2 = new TakingGuideline(dayMoment.AFTERBREAKFAST, 7, "abc", 5, 4, FqUnit.DAY);
         mpl2 = new MedicalPrescriptionLine(new ProductID("182736484763"), tg2);
-        //mpl3 = new MedicalPrescriptionLine(new ProductID("182736484763"), tg2);
-
         tg3 = new TakingGuideline(dayMoment.AFTERBREAKFAST, 7, "abc", 5, 4, FqUnit.DAY);
         mpd = new MedicalPrescriptionLine(new ProductID("772734584763"), tg3);
     }
@@ -66,7 +60,6 @@ public class MedicalPrescriptionTest {
         ProductID productID2 = new ProductID("234736484763");
         ProductID productID = new ProductID("772734584763");
         String[] instruct = new String[] {"AFTERBREAKFAST","7","abc","5","4","DAY"};
-
         String[] wrongLengthInstruct = new String[] {"AFTERBREAKFAST","7","abc","5","4"};
         String[] wrongParseInstruct = new String[] {"AFTERBREAKFAST","a","abc","5","4","DAY"};
         String[] wrongDayMoment = new String[] {"ABC","7","abc","5","4","DAY"};
@@ -75,7 +68,6 @@ public class MedicalPrescriptionTest {
         String[] emptyDose = new String[] {"AFTERBREAKFAST","7","abc","","4","DAY"};
 
         mp.addLine(productID, instruct);
-
         assertEquals(mpd, mp.getMedicalPrescriptionLine(new ProductID("772734584763")));
 
         mp.addLine(productID2, instruct);
@@ -116,7 +108,7 @@ public class MedicalPrescriptionTest {
 
         mp.removeLine(new ProductID("234736484763"));
         equal.removeLine(new ProductID("234736484763"));
-        //System.out.println(mp);
+
         assertEquals(equal, mp);
         mp.removeLine(new ProductID("182736484763"));
         assertEquals(expectedEmptyLines,mp);
