@@ -28,6 +28,7 @@ public class ConsultationTerminal {
         this.eSign = eSign;
         this.listProduct = new ArrayList<>();
         this.presc = new MedicalPrescription();
+
     }
 
     public ConsultationTerminal(HealthNationalService sns,ScheduledVisitAgenda hcr)  {
@@ -120,7 +121,7 @@ public class ConsultationTerminal {
                 throw new eSignatureException("No dispone de Firma Digital");
             }
 
-            if (presc.getPrescDate() == null || presc.getEndDate() == null) {
+            if (presc.getPrescDate() == "" || presc.getEndDate() == null) {
                 throw new NotCompletedMedicalPrescription("No inicializado Medical Prescription");
             }
             presc = sns.sendePrescription(presc);

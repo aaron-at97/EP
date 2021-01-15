@@ -30,7 +30,6 @@ public class ConsultationTerminalNullTest {
         // Inicializamos las clases que implementan las interfaces las cuales disponemos en nulls
         svaNull = new SVANull();
         snsNull = new SNSNull();
-
         // Inicializamos todos los formatos de texto
         actual = new SimpleDateFormat("dd/MM/yyyy");
         instruct = new String[] {"AFTERBREAKFAST","","ghcgcgvh","","8"};
@@ -44,9 +43,7 @@ public class ConsultationTerminalNullTest {
 
     @BeforeEach
     void actulizar () {
-
         terminal = new ConsultationTerminal(snsNull,svaNull);
-
     }
     @Test
     void initRevisionTest() {

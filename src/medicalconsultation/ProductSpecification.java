@@ -8,8 +8,16 @@ public class ProductSpecification {
     private  ProductID productCode;
     private  String description;
     private float price;
+    private String nombre;
 
     public ProductSpecification(String descript, ProductID productID, float price) {
+        this.description=descript;
+        this.productCode=productID;
+        this.price=price;
+    }
+
+    public ProductSpecification(String nombre,String descript, ProductID productID, float price) {
+        this.nombre=nombre;
         this.description=descript;
         this.productCode=productID;
         this.price=price;
@@ -43,6 +51,14 @@ public class ProductSpecification {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override

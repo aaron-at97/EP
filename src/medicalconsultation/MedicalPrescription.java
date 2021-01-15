@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MedicalPrescription { // A class that represents medical prescription
-    private int prescCode;
+    private int prescCode=0;  // Igual a 0 control SNS
     private String prescDate;
     private Date endDate;
     private SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
@@ -163,6 +163,14 @@ public class MedicalPrescription { // A class that represents medical prescripti
     @Override
     public int hashCode() {
         return Objects.hash(prescCode, prescDate, endDate, sdformat, hcID, eSign, listPres, mdl);
+    }
+
+    public void setPrescCode(int prescCode) {
+        this.prescCode = prescCode;
+    }
+
+    public int getPrescCode() {
+        return prescCode;
     }
 
     @Override
