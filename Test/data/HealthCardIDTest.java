@@ -1,8 +1,11 @@
 package data;
 
+import medicalconsultation.exceptions.NotFinishedTreatmentException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class HealthCardIDTest {
@@ -26,9 +29,18 @@ public class HealthCardIDTest {
     }
 
     @Test
-    void getterTest() throws Exception {
+    void equalsTest() throws Exception {
 
         Assertions.assertEquals(correct.getPersonalID(), "ARTO1234567891");
+        assertThrows(Exception.class, () -> {incorrect1.getPersonalID();});
+        assertThrows(Exception.class, () -> {incorrect2.getPersonalID();});
+        assertThrows(Exception.class, () -> {incorrect3.getPersonalID();});
+        assertThrows(Exception.class, () -> {incorrect4.getPersonalID();});
+    }
+
+    @Test
+    void erroresTest() {
+
         Assertions.assertTrue(correct.CodeCardID());
         Assertions.assertFalse(incorrect1.CodeCardID());
         Assertions.assertFalse(incorrect2.CodeCardID());
@@ -37,4 +49,5 @@ public class HealthCardIDTest {
         Assertions.assertFalse(incorrect5.CodeCardID());
 
     }
+
 }

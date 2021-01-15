@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class ProductIDTest {
 
      ProductID correct;
@@ -26,6 +28,16 @@ public class ProductIDTest {
     public void getterProductID() throws Exception{
 
         Assertions.assertEquals(correct.getProductID(), "123456789101");
+        assertThrows(Exception.class, () -> {incorrect1.getProductID();});
+        assertThrows(Exception.class, () -> {incorrect2.getProductID();});
+        assertThrows(Exception.class, () -> {incorrect3.getProductID();});
+        assertThrows(Exception.class, () -> {incorrect4.getProductID();});
+
+    }
+
+    @Test
+    public void erroresProductID() {
+
         Assertions.assertTrue(correct.CompProductCode());
         Assertions.assertFalse(incorrect1.CompProductCode());
         Assertions.assertFalse(incorrect2.CompProductCode());
@@ -33,4 +45,5 @@ public class ProductIDTest {
         Assertions.assertFalse(incorrect4.CompProductCode());
 
     }
+
 }
