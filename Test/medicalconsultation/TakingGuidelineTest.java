@@ -15,7 +15,6 @@ private TakingGuideline tg1;
     void init() throws Exception{
          tg = new TakingGuideline(dayMoment.AFTERBREAKFAST, 26, "4565sjahd", 15, 1, FqUnit.DAY);
          tg1 = new TakingGuideline(dayMoment.AFTERDINNER, 66, "avdjashvdxsdafsdv", 65, 2, FqUnit.WEEK);
-
     }
 
     @Test
