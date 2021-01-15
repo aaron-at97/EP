@@ -35,7 +35,7 @@ public class ConsultationTerminalNullTest {
         actual = new SimpleDateFormat("dd/MM/yyyy");
         instruct = new String[] {"AFTERBREAKFAST","","ghcgcgvh","","8"};
         Date data = new Date();
-        DigitalSignature sign = new DigitalSignature(true);
+        DigitalSignature sign = new DigitalSignature("firma".getBytes());
         List<MedicalPrescriptionLine> listPres = new ArrayList<>();
         mp = new MedicalPrescription(123, actual.format(data), new Date(2020-1900, Calendar.FEBRUARY, 18), hcID, null, listPres);
         mp2 = new MedicalPrescription(123, null, null, hcID, sign, listPres);

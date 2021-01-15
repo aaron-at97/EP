@@ -1,13 +1,13 @@
 package data;
 
 public class DigitalSignature {
-    private final Boolean firma;
+    private final byte[] firma;
 
-    public DigitalSignature (Boolean firm){
+    public DigitalSignature (byte[] firm){
         this.firma = firm;
     }
 
-    public Boolean getSignature() {
+    public byte[] getSignature() {
         return firma;
     }
 
@@ -21,10 +21,7 @@ public class DigitalSignature {
 
     }
 
-    @Override
-    public int hashCode() {
-        return firma.hashCode();
-    }
+
 
     @Override
     public String toString() {

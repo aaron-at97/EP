@@ -20,7 +20,6 @@ public class MedicalPrescriptionTest {
     MedicalPrescription equal;
     List<MedicalPrescriptionLine> lines, list;
     static HealthCardID hcID;
-    static DigitalSignature sign;
     static TakingGuideline tg, tg2, tg3;
     static MedicalPrescriptionLine mpl, mpl2, mpd;
 
@@ -39,21 +38,23 @@ public class MedicalPrescriptionTest {
     @BeforeAll
     static void starting(){
         hcID = new HealthCardID("ARTO1234567891");
-        tg = new TakingGuideline(dayMoment.AFTERMEALS, 7, "abc", 5, 4, FqUnit.HOUR);
-        mpl = new MedicalPrescriptionLine(new ProductID("234736484763"), tg);
-        tg2 = new TakingGuideline(dayMoment.AFTERBREAKFAST, 7, "abc", 5, 4, FqUnit.DAY);
-        mpl2 = new MedicalPrescriptionLine(new ProductID("182736484763"), tg2);
-        tg3 = new TakingGuideline(dayMoment.AFTERBREAKFAST, 7, "abc", 5, 4, FqUnit.DAY);
-        mpd = new MedicalPrescriptionLine(new ProductID("772734584763"), tg3);
+        tg = new TakingGuideline(dayMoment.BEFOREBREAKFAST, 15, "Test assssfaj", 2, 4, FqUnit.HOUR);
+        mpl = new MedicalPrescriptionLine(new ProductID("111111111111"), tg); //234736484763
+        tg2 = new TakingGuideline(dayMoment.BEFOREDINNER, 10, "Prueba test, Hola", 2, 8, FqUnit.DAY);
+        mpl2 = new MedicalPrescriptionLine(new ProductID("222222222222"), tg2); //182736484763
+        tg3 = new TakingGuideline(dayMoment.AFTERDINNER, 66, "avdjashvdxsdafsdv", 3, 8, FqUnit.WEEK);
+        mpd = new MedicalPrescriptionLine(new ProductID("123456789102"), tg3);
     }
 
 
     @Test
     public void addLine() throws Exception {
 
-        ProductID productID2 = new ProductID("234736484763");
-        ProductID productID = new ProductID("772734584763");
-        String[] instruct = new String[] {"AFTERBREAKFAST","7","abc","5","4","DAY"};
+        ProductID productID2 = new ProductID("111111111111");
+        ProductID productID = new ProductID("123456789102");
+        String[] instruct = new String[] {"AFTERDINNER", "66", "avdjashvdxsdafsdv", "3", "8", "WEEK"};
+
+        /// modificar valores y nombres de los String
         String[] wrongLengthInstruct = new String[] {"AFTERBREAKFAST","7","abc","5","4"};
         String[] wrongParseInstruct = new String[] {"AFTERBREAKFAST","a","abc","5","4","DAY"};
         String[] wrongDayMoment = new String[] {"ABC","7","abc","5","4","DAY"};
@@ -62,7 +63,7 @@ public class MedicalPrescriptionTest {
         String[] emptyDose = new String[] {"AFTERBREAKFAST","7","abc","","4","DAY"};
 
         mp.addLine(productID, instruct);
-        assertEquals(mpd, mp.getMedicalPrescriptionLine(new ProductID("772734584763")));
+        assertEquals(mpd, mp.getMedicalPrescriptionLine(new ProductID("123456789102")));
 
         mp.addLine(productID2, instruct);
         assertNotEquals(mpd, mp.getMedicalPrescriptionLine(productID2));
@@ -100,17 +101,17 @@ public class MedicalPrescriptionTest {
 
         MedicalPrescription expectedEmptyLines = new MedicalPrescription(123);
 
-        mp.removeLine(new ProductID("234736484763"));
-        equal.removeLine(new ProductID("234736484763"));
+        mp.removeLine(new ProductID("111111111111"));
+        equal.removeLine(new ProductID("111111111111"));
 
         assertEquals(equal, mp);
-        mp.removeLine(new ProductID("182736484763"));
+        mp.removeLine(new ProductID("222222222222"));
         assertEquals(expectedEmptyLines,mp);
         String[] instruct = new String[] {"AFTERBREAKFAST","7","abc","5","4","DAY"};
-        mp.addLine(new ProductID("654616515"),instruct);
-        mp.removeLine(new ProductID("654616515"));
+        mp.addLine(new ProductID("987654321567"),instruct);
+        mp.removeLine(new ProductID("987654321567"));
 
-        assertThrows(ProductNotInPrescription.class, () -> {mp.getMedicalPrescriptionLine(new ProductID("654616515"));});
+        assertThrows(ProductNotInPrescription.class, () -> {mp.getMedicalPrescriptionLine(new ProductID("987654321567"));});
 
     }
 

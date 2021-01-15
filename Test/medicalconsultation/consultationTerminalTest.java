@@ -36,17 +36,17 @@ public class consultationTerminalTest {
     @BeforeAll
     static void start() throws Exception {
         actual = new SimpleDateFormat("dd/MM/yyyy");
-        ct = new ConsultationTerminal(new DigitalSignature(true));
+        ct = new ConsultationTerminal(new DigitalSignature("firma".getBytes()));
         hns = new HNSdoble();
         hnsNull = new HNSdobleNull();
         agenda = new AgendaDoble();
         agendaNull = new AgendaDobleNull();
-        hcID = new HealthCardID("ARTO728364923473");
+        hcID = new HealthCardID("ARTO7283649234");
         instruct = new String[] {"AFTERBREAKFAST","5","ghcgcgvh","2","8","DAY"};
 
         expectedLastSearch = hns.getProductsByKW("");
 
-        DigitalSignature sign = new DigitalSignature(true);
+        DigitalSignature sign = new DigitalSignature("firma".getBytes());
 
         TakingGuideline tg = new TakingGuideline(dayMoment.AFTERMEALS, 7, "abc", 5, 4, FqUnit.HOUR);
         MedicalPrescriptionLine mpl = new MedicalPrescriptionLine(new ProductID("234736484763"), tg);
@@ -65,7 +65,7 @@ public class consultationTerminalTest {
 
     @BeforeEach
     void setup() {
-        ct = new ConsultationTerminal(new DigitalSignature(true));
+        ct = new ConsultationTerminal(new DigitalSignature("firma".getBytes()));
         ct.setSns(hns);
         ct.setHcr(agenda);
     }
@@ -195,11 +195,11 @@ public class consultationTerminalTest {
         ct.enterMedicineGuidelines(instruct);
         ct.enterTreatmentEndingDate(new Date(2021-1900, Calendar.DECEMBER, 30));
         MedicalPrescription before = ct.getPresc();
-        assertEquals(new DigitalSignature(true) ,before.geteSign());
+        assertEquals(new DigitalSignature("firma".getBytes()) ,before.geteSign());
 
         ct.sendePrescription();
         MedicalPrescription after = ct.getPresc();
-        assertEquals(new DigitalSignature(true) ,after.geteSign());
+        assertEquals(new DigitalSignature("firma".getBytes()) ,after.geteSign());
         assertEquals(before, after);
 
         System.out.println();

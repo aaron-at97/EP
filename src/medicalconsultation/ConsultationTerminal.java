@@ -90,7 +90,7 @@ public class ConsultationTerminal {
 
     public void enterMedicineGuidelines(String[] instruc) throws AnySelectedMedicineException, IncorrectTakingGuidelinesException {
         if (productID == null) {
-            throw new AnySelectedMedicineException("");
+            throw new AnySelectedMedicineException(" No se a realizado la seleccion anterior");
         }
         // Ya esta implementado IncorrectTakingGuideLinesException
         presc.addLine(productID, instruc);
