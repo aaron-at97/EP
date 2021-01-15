@@ -77,6 +77,7 @@ public class consultationTerminalTest {
         assertEquals(mp, ct.getPresc());
 
     }
+
     @Test
     void initRevision2()  {
         ct.setHcr(agendaNull);

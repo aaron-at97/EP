@@ -1,4 +1,4 @@
-package medicalconsultation;
+package Service;
 
 import data.HealthCardID;
 import org.junit.jupiter.api.Test;
