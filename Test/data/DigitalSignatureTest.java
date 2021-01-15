@@ -1,19 +1,18 @@
 package data;
 
-import data.DigitalSignature;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DigitalSignatureTest {
-    private DigitalSignature ds;
-    private DigitalSignature ds2;
+    static DigitalSignature ds;
+    static DigitalSignature ds2;
 
-    @BeforeEach
-    void init(){
+    @BeforeAll
+    static void init(){
         ds = new  DigitalSignature("Firma".getBytes());
         ds2 = new DigitalSignature("AAT".getBytes());
 
