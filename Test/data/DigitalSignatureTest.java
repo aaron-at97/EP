@@ -25,6 +25,7 @@ class DigitalSignatureTest {
         assertNotEquals(Arrays.toString("MBL".getBytes()),Arrays.toString(ds.getFirma()));
         assertNotEquals(Arrays.toString("OLI".getBytes()), Arrays.toString(ds2.getFirma()));
     }
+
     @Test
     void equalsTest(){
         DigitalSignature Equals = new DigitalSignature("Firma".getBytes());
@@ -35,6 +36,7 @@ class DigitalSignatureTest {
         assertNotEquals(ds,Equals2);
         assertNotEquals(ds2,Equals);
     }
+
     @Test
     void toStringTest(){
         String Equals= ("DigitalSignature Signature{" + "Signature: '" + Arrays.toString("Firma".getBytes()) + '\'' + '}');
