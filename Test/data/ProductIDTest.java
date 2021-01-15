@@ -2,6 +2,7 @@ package data;
 
 import org.junit.jupiter.api.Assertions;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProductIDTest {
 
-     ProductID correct;
-     ProductID incorrect1;
-     ProductID incorrect2;
-     ProductID incorrect3;
-     ProductID incorrect4;
+     static ProductID correct;
+     static ProductID incorrect1;
+     static ProductID incorrect2;
+     static ProductID incorrect3;
+     static ProductID incorrect4;
 
-    @BeforeEach
-    void setupAll() {
+    @BeforeAll
+    static void setupAll() {
         correct = new ProductID("123456789101");
         incorrect1 = new ProductID("");
         incorrect2 = new ProductID("12345678"); // menos de 12 digitos
