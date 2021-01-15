@@ -36,6 +36,7 @@ public class HealthCardIDTest {
         assertThrows(Exception.class, () -> {incorrect2.getPersonalID();});
         assertThrows(Exception.class, () -> {incorrect3.getPersonalID();});
         assertThrows(Exception.class, () -> {incorrect4.getPersonalID();});
+        assertThrows(Exception.class, () -> {incorrect5.getPersonalID();});
     }
 
     @Test
