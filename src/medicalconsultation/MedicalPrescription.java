@@ -145,6 +145,9 @@ public class MedicalPrescription { // A class that represents medical prescripti
         this.endDate = endDate;
     }
 
+    public HealthCardID getHcID() {
+        return hcID;
+    }
 
     @Override
     public boolean equals(Object o) {
