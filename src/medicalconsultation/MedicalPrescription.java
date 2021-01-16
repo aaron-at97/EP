@@ -15,7 +15,6 @@ public class MedicalPrescription { // A class that represents medical prescripti
     private DigitalSignature eSign; // the eSignature of the doctor
 
     List<MedicalPrescriptionLine> listPres;
-    // objeto inicializar preinscripcion
     private MedicalPrescriptionLine mdl;
 
 
@@ -55,11 +54,9 @@ public class MedicalPrescription { // A class that represents medical prescripti
         this.listPres = new ArrayList<>();
     }
 
-    // Makes some inicialization
     public void addLine(ProductID prodID, String[] instruc) throws  IncorrectTakingGuidelinesException {
-       if(instruc.length != 6 || dayMoment.getdayMoment(instruc[0]) == null || instruc[1].isEmpty() || instruc[2].isEmpty() ||
-                instruc[3].isEmpty() || instruc[4].isEmpty() ||FqUnit.getFqUnit(instruc[5]) == null) {
-            throw new IncorrectTakingGuidelinesException(" Error: Itroduccion de lines incorrecta");
+        if (!comprobacionTaking(instruc)){
+            throw new IncorrectTakingGuidelinesException("Error: Itroduccion de lines incorrecta");
         }
         try {
             TakingGuideline tg = new TakingGuideline(dayMoment.getdayMoment(instruc[0]), Float.parseFloat(instruc[1]),
@@ -73,24 +70,18 @@ public class MedicalPrescription { // A class that represents medical prescripti
     }
 
     public void modifyLine(ProductID prodID, String[] instruc) throws ProductNotInPrescription, IncorrectTakingGuidelinesException {
-        if(instruc.length != 6 || dayMoment.getdayMoment(instruc[0]) == null || instruc[1].isEmpty() || instruc[2].isEmpty() ||
-                instruc[3].isEmpty() || instruc[4].isEmpty() ||FqUnit.getFqUnit(instruc[5]) == null) {
-            throw new IncorrectTakingGuidelinesException(" Error: Itroduccion de lines incorrecta");
+        if (!comprobacionTaking(instruc)){
+            throw new IncorrectTakingGuidelinesException("Error: Itroduccion de lines incorrecta");
         }
-        // Al llamar a la funcion getMedicalPrescription estamos comprobando la excepcion ProductNotInPrescription
-        mdl = getMedicalPrescriptionLine(prodID);
-        // Modificacion de Objeto MedicalPrescriptionLine
-        TakingGuideline tg = new TakingGuideline(dayMoment.getdayMoment(instruc[0]), Float.parseFloat(instruc[1]),
-                instruc[2], Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.getFqUnit(instruc[5]));
-        mdl.setInstruc(tg);
-
-        // Este for solo actualiza la lista, para no tener duplicados en la prueba de errores
-       /* for (int i = 0; i < listPres.size(); i++) {
-            if (prodID.equals(listPres.get(i).getProdID())) {
-                listPres.set(i,new MedicalPrescriptionLine(prodID, tg));
-            }
-        }*/
-
+        try {
+            mdl = getMedicalPrescriptionLine(prodID);
+            // Modificacion de Objeto MedicalPrescriptionLine
+            TakingGuideline tg = new TakingGuideline(dayMoment.getdayMoment(instruc[0]), Float.parseFloat(instruc[1]),
+                    instruc[2], Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.getFqUnit(instruc[5]));
+            mdl.setInstruc(tg);
+        } catch (Exception e) {
+            throw new IncorrectTakingGuidelinesException("Error: Itroduccion de lines incorrecta");
+        }
     }
 
     public void removeLine(ProductID prodID) throws ProductNotInPrescription {
@@ -113,7 +104,16 @@ public class MedicalPrescription { // A class that represents medical prescripti
         }
         return mdl;
     }
-
+    public Boolean comprobacionTaking(String[] instruc)  {
+        if (instruc.length!=6) {
+            return false;
+        }
+        if(dayMoment.getdayMoment(instruc[0]) == null || instruc[1].isEmpty() || instruc[2].isEmpty() ||
+                instruc[3].isEmpty() || instruc[4].isEmpty() ||FqUnit.getFqUnit(instruc[5]) == null) {
+            return false;
+        }
+        return true;
+    }
 
     public DigitalSignature geteSign() {
         return eSign;

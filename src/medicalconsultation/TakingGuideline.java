@@ -2,7 +2,7 @@ package medicalconsultation;
 
 import java.util.Objects;
 
-public class TakingGuideline  {  // Represents the taking guidelines of a medicine
+public class TakingGuideline  {
 
     private dayMoment dayMoment;
     private float duration;

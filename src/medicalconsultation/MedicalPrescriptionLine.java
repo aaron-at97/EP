@@ -20,10 +20,6 @@ public class MedicalPrescriptionLine {
         return prodID;
     }
 
-    public void setProdID(ProductID prodID) {
-        this.prodID = prodID;
-    }
-
     public TakingGuideline getInstruc() {
         return instruc;
     }
