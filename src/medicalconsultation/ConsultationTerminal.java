@@ -95,7 +95,6 @@ public class ConsultationTerminal {
         }
         // Ya esta implementado IncorrectTakingGuideLinesException
         presc.addLine(productID, instruc);
-        //MedicalPrescriptionLine mdl = presc.getListPres().get(presc.getListPres().size()-1);
     }
 
     public void enterTreatmentEndingDate(Date date) throws IncorrectEndingDateException{
@@ -144,20 +143,8 @@ public class ConsultationTerminal {
         return hc;
     }
 
-    public void setHc(HealthCardID hc) {
-        this.hc = hc;
-    }
-
-    public ScheduledVisitAgenda getHcr() {
-        return hcr;
-    }
-
     public void setHcr(ScheduledVisitAgenda hcr) {
         this.hcr = hcr;
-    }
-
-    public HealthNationalService getSns() {
-        return sns;
     }
 
     public void setSns(HealthNationalService sns) {
@@ -176,36 +163,12 @@ public class ConsultationTerminal {
         return listProduct;
     }
 
-    public void setListProduct(List<ProductSpecification> listProduct) {
-        this.listProduct = listProduct;
-    }
-
     public ProductID getProductID() {
         return productID;
     }
 
     public void setProductID(ProductID productID) {
         this.productID = productID;
-    }
-
-    public Date getActual() {
-        return actual;
-    }
-
-    public ProductSpecification getProducEsp() {
-        return producEsp;
-    }
-
-    public void setProducEsp(ProductSpecification producEsp) {
-        this.producEsp = producEsp;
-    }
-
-    public DigitalSignature geteSign() {
-        return eSign;
-    }
-
-    public void seteSign(DigitalSignature eSign) {
-        this.eSign = eSign;
     }
 
 

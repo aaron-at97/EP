@@ -4,8 +4,6 @@ package services;
 
 import data.HealthCardID;
 import services.exceptions.HealthCardException;
-
-import java.time.Month;
 import java.util.*;
 
 public class ScheduledVisitAgendaImple implements ScheduledVisitAgenda {
