@@ -286,7 +286,7 @@ public class consultationTerminalTest {
         @Override
         public HealthCardID getHealthCardID() throws HealthCardException {
             try {
-                return new HealthCardID("ARTO728364923473");
+                return new HealthCardID("ARTO7283649234");
             } catch (Exception e) {
                 e.printStackTrace();
             }

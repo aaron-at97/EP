@@ -74,7 +74,7 @@ public class MedicalPrescription { // A class that represents medical prescripti
             throw new IncorrectTakingGuidelinesException("Error: Itroduccion de lines incorrecta");
         }
         try {
-            mdl = getMedicalPrescriptionLine(prodID);
+            mdl = buscarProducto(prodID);
             // Modificacion de Objeto MedicalPrescriptionLine
             TakingGuideline tg = new TakingGuideline(dayMoment.getdayMoment(instruc[0]), Float.parseFloat(instruc[1]),
                     instruc[2], Float.parseFloat(instruc[3]), Float.parseFloat(instruc[4]), FqUnit.getFqUnit(instruc[5]));
@@ -86,12 +86,12 @@ public class MedicalPrescription { // A class that represents medical prescripti
 
     public void removeLine(ProductID prodID) throws ProductNotInPrescription {
 
-       mdl = getMedicalPrescriptionLine(prodID);
+       mdl = buscarProducto(prodID);
        listPres.remove(mdl);
 
     }
 
-    public MedicalPrescriptionLine getMedicalPrescriptionLine(ProductID pd) throws ProductNotInPrescription{
+    public MedicalPrescriptionLine buscarProducto(ProductID pd) throws ProductNotInPrescription{
         boolean flag = false;
         for (int i = 0; i < listPres.size(); i++) {
             if (pd.equals(listPres.get(i).getProdID())) {

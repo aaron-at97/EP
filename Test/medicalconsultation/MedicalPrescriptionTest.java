@@ -23,17 +23,6 @@ public class MedicalPrescriptionTest {
     static TakingGuideline tg, tg2, tg3;
     static MedicalPrescriptionLine mpl, mpl2, mpd;
 
-    @BeforeEach
-    void setup() {
-        lines = new ArrayList<>();
-        list= new ArrayList<>();
-        lines.add(mpl);
-        lines.add(mpl2);
-        list.add(mpl);
-        list.add(mpl2);
-        mp = new MedicalPrescription(123, lines);
-        equal = new MedicalPrescription(123, list);
-    }
 
     @BeforeAll
     static void starting(){
@@ -46,6 +35,19 @@ public class MedicalPrescriptionTest {
         mpd = new MedicalPrescriptionLine(new ProductID("123456789102"), tg3);
     }
 
+    @BeforeEach
+    void setup() {
+        lines = new ArrayList<>();
+        list= new ArrayList<>();
+        lines.add(mpl);
+        lines.add(mpl2);
+        list.add(mpl);
+        list.add(mpl2);
+        mp = new MedicalPrescription(123, lines);
+        equal = new MedicalPrescription(123, list);
+    }
+
+
 
     @Test
     public void addLine() throws Exception {
@@ -55,32 +57,32 @@ public class MedicalPrescriptionTest {
         String[] instruct = new String[] {"AFTERDINNER", "66", "avdjashvdxsdafsdv", "3", "8", "WEEK"};
 
         /// modificar valores y nombres de los String
-        String[] wrongLengthInstruct = new String[] {"AFTERBREAKFAST","7","abc","5","4"};
-        String[] wrongParseInstruct = new String[] {"AFTERBREAKFAST","a","abc","5","4","DAY"};
-        String[] wrongDayMoment = new String[] {"ABC","7","abc","5","4","DAY"};
-        String[] wrongFQ = new String[] {"AFTERBREAKFAST","7","abc","5","4","AA"};
-        String[] emptyDayMoment = new String[] {"","7","abc","5","4","DAY"};
-        String[] emptyDose = new String[] {"AFTERBREAKFAST","7","abc","","4","DAY"};
+        String[] incorrect = new String[] {"BEFOREBREAKFAST","4","5","4","HOUR"};
+        String[] incorrect2 = new String[] {"AFTERBREAKFAST","AATT","Hola","5","4","DAY"};
+        String[] incorrect3 = new String[] {"AFTERDINNER","3","Hola","5","9","CASA"};
+        String[] incorrect4 = new String[] {"CASA","2","Hola","5","4","DAY"};
+        String[] incorrect5 = new String[] {"BEFOREBREAKFAST","","Hola","5","2","MONTH"};
+        String[] incorrect6 = new String[] {"AFTERDINNER","2","Hola","","4","WEEK"};
 
         mp.addLine(productID, instruct);
-        assertEquals(mpd, mp.getMedicalPrescriptionLine(new ProductID("123456789102")));
+        assertEquals(mpd, mp.buscarProducto(new ProductID("123456789102")));
 
         mp.addLine(productID2, instruct);
-        assertNotEquals(mpd, mp.getMedicalPrescriptionLine(productID2));
+        assertNotEquals(mpd, mp.buscarProducto(productID2));
 
-        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, wrongLengthInstruct);});
-        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, wrongParseInstruct);});
-        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, wrongDayMoment);});
-        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, wrongFQ);});
-        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, emptyDayMoment);});
-        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, emptyDose);});
+        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect);});
+        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect2);});
+        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect3);});
+        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect4);});
+        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect5);});
+        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect6);});
 
     }
 
     @Test
     public void modifyLine() throws Exception {
 
-        ProductID productID = new ProductID("456789101123");
+        ProductID productID = new ProductID("123456789102");
         TakingGuideline tg2 = new TakingGuideline(dayMoment.DURINGDINNER, 65, "asvsdvsbc", 5, 4, FqUnit.DAY);
         String[] instruct2 = new String[] {"DURINGDINNER","65","asvsdvsbc","5","4","DAY"};
         String[] instruct = new String[] {"AFTERBREAKFAST","7","sadjsakdkjasbdkjbkasbkabskhdbkasjdvsjahd","24","2","HOUR"};
@@ -88,10 +90,10 @@ public class MedicalPrescriptionTest {
         mp.addLine(productID, instruct);
         mp.modifyLine(productID, instruct2);
 
-        MedicalPrescriptionLine expectedMod = new MedicalPrescriptionLine(new ProductID("456789101123"), tg2);
+        MedicalPrescriptionLine expectedMod = new MedicalPrescriptionLine(new ProductID("123456789102"), tg2);
 
-        assertEquals(expectedMod, mp.getMedicalPrescriptionLine(new ProductID("456789101123")));
-        assertThrows(ProductNotInPrescription.class, () -> {mp.getMedicalPrescriptionLine(new ProductID("654616515"));});
+        assertEquals(expectedMod, mp.buscarProducto(new ProductID("123456789102")));
+        assertThrows(ProductNotInPrescription.class, () -> {mp.buscarProducto(new ProductID("654616515"));});
 
     }
 
@@ -111,7 +113,7 @@ public class MedicalPrescriptionTest {
         mp.addLine(new ProductID("987654321567"),instruct);
         mp.removeLine(new ProductID("987654321567"));
 
-        assertThrows(ProductNotInPrescription.class, () -> {mp.getMedicalPrescriptionLine(new ProductID("987654321567"));});
+        assertThrows(ProductNotInPrescription.class, () -> {mp.buscarProducto(new ProductID("987654321567"));});
 
     }
 
