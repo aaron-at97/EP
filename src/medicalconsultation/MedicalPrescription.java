@@ -91,10 +91,10 @@ public class MedicalPrescription { // A class that represents medical prescripti
 
     }
 
-    public MedicalPrescriptionLine buscarProducto(ProductID pd) throws ProductNotInPrescription{
+    public MedicalPrescriptionLine buscarProducto(ProductID prodID) throws ProductNotInPrescription{
         boolean flag = false;
         for (int i = 0; i < listPres.size(); i++) {
-            if (pd.equals(listPres.get(i).getProdID())) {
+            if (prodID.equals(listPres.get(i).getProdID())) {
                 mdl= listPres.get(i);
                 flag=true;
             }
