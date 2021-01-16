@@ -13,7 +13,6 @@ public class MedicalPrescription { // A class that represents medical prescripti
     private SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
     private HealthCardID hcID; // the healthcard ID of the patient
     private DigitalSignature eSign; // the eSignature of the doctor
-
     List<MedicalPrescriptionLine> listPres;
     private MedicalPrescriptionLine mdl;
 
