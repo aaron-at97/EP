@@ -22,21 +22,25 @@ public class MedicalPrescriptionTest {
     static HealthCardID hcID;
     static TakingGuideline tg, tg2, tg3;
     static MedicalPrescriptionLine mpl, mpl2, mpd;
+    static ProductID productID2,productID;
 
 
     @BeforeAll
-    static void starting(){
+    static void init(){
+        productID2 = new ProductID("111111111111");
+        productID = new ProductID("123456789102");
         hcID = new HealthCardID("ARTO1234567891");
         tg = new TakingGuideline(dayMoment.BEFOREBREAKFAST, 15, "Test assssfaj", 2, 4, FqUnit.HOUR);
-        mpl = new MedicalPrescriptionLine(new ProductID("111111111111"), tg); //234736484763
+        mpl = new MedicalPrescriptionLine(productID2, tg); //234736484763
         tg2 = new TakingGuideline(dayMoment.BEFOREDINNER, 10, "Prueba test, Hola", 2, 8, FqUnit.DAY);
-        mpl2 = new MedicalPrescriptionLine(new ProductID("222222222222"), tg2); //182736484763
+        mpl2 = new MedicalPrescriptionLine(productID, tg2); //182736484763
         tg3 = new TakingGuideline(dayMoment.AFTERDINNER, 66, "avdjashvdxsdafsdv", 3, 8, FqUnit.WEEK);
         mpd = new MedicalPrescriptionLine(new ProductID("123456789102"), tg3);
+
     }
 
     @BeforeEach
-    void setup() {
+    void generaryVaciar() {
         lines = new ArrayList<>();
         list= new ArrayList<>();
         lines.add(mpl);
@@ -52,8 +56,7 @@ public class MedicalPrescriptionTest {
     @Test
     public void addLine() throws Exception {
 
-        ProductID productID2 = new ProductID("111111111111");
-        ProductID productID = new ProductID("123456789102");
+
         String[] instruct = new String[] {"AFTERDINNER", "66", "avdjashvdxsdafsdv", "3", "8", "WEEK"};
 
         /// modificar valores y nombres de los String
@@ -62,20 +65,21 @@ public class MedicalPrescriptionTest {
         String[] incorrect3 = new String[] {"AFTERDINNER","3","Hola","5","9","CASA"};
         String[] incorrect4 = new String[] {"CASA","2","Hola","5","4","DAY"};
         String[] incorrect5 = new String[] {"BEFOREBREAKFAST","","Hola","5","2","MONTH"};
-        String[] incorrect6 = new String[] {"AFTERDINNER","2","Hola","","4","WEEK"};
 
-        mp.addLine(productID, instruct);
-        assertEquals(mpd, mp.buscarProducto(new ProductID("123456789102")));
 
         mp.addLine(productID2, instruct);
         assertNotEquals(mpd, mp.buscarProducto(productID2));
+        mp.addLine(productID, instruct);
+        assertEquals(mpd, mp.buscarProducto(new ProductID("123456789102")));
+
+
 
         assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect);});
         assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect2);});
         assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect3);});
         assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect4);});
         assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect5);});
-        assertThrows(IncorrectTakingGuidelinesException.class, () -> {mp.addLine(productID, incorrect6);});
+
 
     }
 
@@ -93,7 +97,7 @@ public class MedicalPrescriptionTest {
         MedicalPrescriptionLine expectedMod = new MedicalPrescriptionLine(new ProductID("123456789102"), tg2);
 
         assertEquals(expectedMod, mp.buscarProducto(new ProductID("123456789102")));
-        assertThrows(ProductNotInPrescription.class, () -> {mp.buscarProducto(new ProductID("654616515"));});
+        assertThrows(ProductNotInPrescription.class, () -> {mp.buscarProducto(new ProductID("321456789236"));});
 
     }
 
@@ -103,13 +107,13 @@ public class MedicalPrescriptionTest {
 
         MedicalPrescription expectedEmptyLines = new MedicalPrescription(123);
 
-        mp.removeLine(new ProductID("111111111111"));
-        equal.removeLine(new ProductID("111111111111"));
+        mp.removeLine(productID2);
+        equal.removeLine(productID2);
 
         assertEquals(equal, mp);
-        mp.removeLine(new ProductID("222222222222"));
+        mp.removeLine(productID);
         assertEquals(expectedEmptyLines,mp);
-        String[] instruct = new String[] {"AFTERBREAKFAST","7","abc","5","4","DAY"};
+        String[] instruct = new String[] {"AFTERBREAKFAST","2","Hola","3","4","HOUR"};
         mp.addLine(new ProductID("987654321567"),instruct);
         mp.removeLine(new ProductID("987654321567"));
 
