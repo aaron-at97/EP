@@ -22,7 +22,6 @@ public class ConsultationTerminalNormal {
     static String[] instruct;
     static SimpleDateFormat actual;
     static ConsultationTerminal terminal;
-    static List<MedicalPrescriptionLine> listPres;
     static List<ProductSpecification> listProd;
     @BeforeAll
     static void inicializar() throws Exception {
@@ -76,7 +75,7 @@ public class ConsultationTerminalNormal {
     @Test
     void searchForProducts() throws Exception{
         terminal.initRevision();
-        terminal.searchForProducts("paracetamol");
+        terminal.searchForProducts("ibuprofeno");
         assertEquals(listProd, terminal.getListProduct());
 
     }
@@ -85,7 +84,7 @@ public class ConsultationTerminalNormal {
     void selectProduct() throws Exception {
 
         terminal.initRevision();
-        terminal.searchForProducts("paracetamol");
+        terminal.searchForProducts("ibuprofeno");
         terminal.selectProduct(1);
         assertEquals(new ProductID("111111111111"), terminal.getProductID());
 
@@ -95,7 +94,7 @@ public class ConsultationTerminalNormal {
     void enterMedicineGuidelines() throws Exception{
         assertThrows(AnySelectedMedicineException.class, () -> {terminal.enterMedicineGuidelines(null);});
         terminal.initRevision();
-        terminal.searchForProducts("paracetamol");
+        terminal.searchForProducts("ibuprofeno");
         terminal.selectProduct(1);
         terminal.enterMedicineGuidelines(instruct);
         mp.addLine(new ProductID("444444444444"), instruct);
